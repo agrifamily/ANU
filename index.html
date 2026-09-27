@@ -3,525 +3,584 @@
 <html lang="ta">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Anu ❤️ Gowtham</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ANU ❤️ GOWTHAM</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    font-family:Arial, sans-serif;
-    background:#05000d;
-    color:white;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:"Segoe UI",Arial,sans-serif;
+background:#030007;
+color:white;
 }
 
-/* ================= BACKGROUND ================= */
-
+/* BACKGROUND */
 body{
-    background:
-        radial-gradient(circle at 50% 20%,#4b0b5f 0%,#170027 35%,#05000d 75%);
+background:
+radial-gradient(circle at 50% 30%,#650047 0%,#250022 28%,#08000d 65%,#000 100%);
 }
 
-.stars{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
+#stars,.petals,.sparkles{
+position:fixed;
+inset:0;
+pointer-events:none;
 }
 
 .star{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    box-shadow:0 0 10px white;
-    animation:twinkle 2s infinite alternate;
+position:absolute;
+width:2px;
+height:2px;
+border-radius:50%;
+background:white;
+box-shadow:0 0 8px white;
+animation:twinkle 2s infinite alternate;
 }
 
 @keyframes twinkle{
-    from{opacity:.2;transform:scale(.5);}
-    to{opacity:1;transform:scale(1.5);}
+from{opacity:.1;transform:scale(.5)}
+to{opacity:1;transform:scale(1.7)}
 }
 
-/* ================= PAGE ================= */
-
-.page{
-    position:absolute;
-    inset:0;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:25px;
+/* SCREENS */
+.screen{
+position:absolute;
+inset:0;
+display:none;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:25px;
 }
 
-.page.active{
-    display:flex;
-    animation:pageIn 1s ease;
+.screen.show{
+display:flex;
+animation:cinemaIn 1.2s ease forwards;
 }
 
-@keyframes pageIn{
-    0%{
-        opacity:0;
-        transform:scale(1.2);
-        filter:blur(15px);
-    }
-    100%{
-        opacity:1;
-        transform:scale(1);
-        filter:blur(0);
-    }
+@keyframes cinemaIn{
+0%{
+opacity:0;
+transform:scale(1.15);
+filter:blur(18px);
+}
+100%{
+opacity:1;
+transform:scale(1);
+filter:blur(0);
+}
 }
 
 .content{
-    width:min(900px,94%);
-    position:relative;
-    z-index:5;
+width:min(900px,94vw);
 }
 
-.small{
-    font-size:15px;
-    letter-spacing:5px;
-    color:#ffb4d5;
-    margin-bottom:25px;
+/* CINEMA LABEL */
+.label{
+font-size:12px;
+letter-spacing:6px;
+color:#ffb2d3;
+margin-bottom:25px;
+text-transform:uppercase;
 }
 
-.title{
-    font-size:clamp(42px,10vw,90px);
-    font-weight:900;
-    background:linear-gradient(90deg,#fff,#ff6fa8,#fff);
-    background-size:200%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:shine 3s infinite linear;
+.bigTitle{
+font-size:clamp(55px,14vw,125px);
+font-weight:900;
+letter-spacing:5px;
+background:linear-gradient(
+90deg,
+#fff,
+#ff559b,
+#fff,
+#ff559b,
+#fff
+);
+background-size:300%;
+-webkit-background-clip:text;
+color:transparent;
+animation:shine 4s linear infinite;
 }
 
 @keyframes shine{
-    0%{background-position:0%;}
-    100%{background-position:200%;}
+to{background-position:300%}
 }
 
+/* TYPEWRITER */
 .poem{
-    font-size:clamp(20px,4vw,32px);
-    line-height:1.8;
-    margin:25px auto;
-    max-width:800px;
-    min-height:170px;
+font-size:clamp(19px,4vw,31px);
+line-height:1.9;
+min-height:250px;
+margin:20px auto;
+text-shadow:0 3px 20px #000;
 }
 
-.highlight{
-    color:#ff75ad;
-    text-shadow:0 0 20px #ff2e88;
+.pink{
+color:#ff62a6;
+font-weight:700;
+text-shadow:0 0 18px #ff1878;
 }
 
-.tap{
-    margin-top:30px;
-    font-size:14px;
-    letter-spacing:3px;
-    color:#bbb;
-    animation:pulse 1.5s infinite;
+/* HEART */
+.heartBig{
+font-size:95px;
+filter:drop-shadow(0 0 35px #ff1978);
+animation:beat 1.1s infinite;
 }
 
-@keyframes pulse{
-    50%{opacity:.25;}
+@keyframes beat{
+0%,100%{transform:scale(1)}
+15%{transform:scale(1.25)}
+30%{transform:scale(1)}
+45%{transform:scale(1.16)}
+60%{transform:scale(1)}
 }
 
-/* ================= HEART ================= */
-
-.bigHeart{
-    font-size:100px;
-    animation:heartbeat 1.1s infinite;
-    filter:drop-shadow(0 0 30px #ff1979);
+/* MOVIE FRAME */
+.frame{
+width:220px;
+height:220px;
+margin:auto auto 25px;
+border-radius:50%;
+border:2px solid #ff4c98;
+box-shadow:
+0 0 20px #ff227d,
+inset 0 0 35px #ff227d;
+display:flex;
+justify-content:center;
+align-items:center;
+animation:spin 12s linear infinite;
 }
 
-@keyframes heartbeat{
-    0%,100%{transform:scale(1);}
-    15%{transform:scale(1.2);}
-    30%{transform:scale(1);}
-    45%{transform:scale(1.15);}
+.frame span{
+font-size:85px;
+animation:counter 12s linear infinite;
 }
 
-/* ================= PHOTO FRAME ================= */
-
-.orbit{
-    width:230px;
-    height:230px;
-    margin:0 auto 25px;
-    border:2px solid #ff5b9c;
-    border-radius:50%;
-    box-shadow:
-        0 0 30px #ff287f,
-        inset 0 0 30px #ff287f;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    animation:orbit 8s linear infinite;
-}
-
-@keyframes orbit{
-    to{transform:rotate(360deg);}
-}
-
-.orbit span{
-    font-size:85px;
-    animation:counter 8s linear infinite;
+@keyframes spin{
+to{transform:rotate(360deg)}
 }
 
 @keyframes counter{
-    to{transform:rotate(-360deg);}
+to{transform:rotate(-360deg)}
 }
 
-/* ================= BUTTON ================= */
-
-.buttons{
-    margin-top:25px;
-}
-
+/* BUTTONS */
 button{
-    border:0;
-    padding:15px 35px;
-    margin:8px;
-    border-radius:50px;
-    color:white;
-    background:linear-gradient(90deg,#ff176f,#ff65aa);
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 0 25px #ff247f;
-    transition:.3s;
+border:0;
+padding:16px 38px;
+border-radius:50px;
+margin:7px;
+font-size:17px;
+font-weight:700;
+color:white;
+cursor:pointer;
+background:linear-gradient(90deg,#ff176f,#ff65ae);
+box-shadow:0 0 25px #ff227d;
+transition:.3s;
 }
 
 button:hover{
-    transform:scale(1.12);
+transform:scale(1.1);
 }
 
-.no{
-    background:#24202a;
-    box-shadow:none;
+.think{
+background:#29232d;
+box-shadow:none;
 }
 
-/* ================= FLOATING HEARTS ================= */
+/* TAP */
+.tap{
+font-size:12px;
+letter-spacing:4px;
+color:#aaa;
+animation:pulse 1.5s infinite;
+}
 
-.heart{
-    position:fixed;
-    bottom:-50px;
-    pointer-events:none;
-    animation:floatUp linear forwards;
-    z-index:2;
+@keyframes pulse{
+50%{opacity:.2}
+}
+
+/* FLOATING PETALS */
+.petal{
+position:fixed;
+top:-50px;
+font-size:22px;
+animation:fall linear forwards;
+z-index:20;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(720deg);
+opacity:0;
+}
+}
+
+/* HEART FLOAT */
+.floatHeart{
+position:fixed;
+bottom:-50px;
+font-size:25px;
+animation:floatUp linear forwards;
+z-index:10;
 }
 
 @keyframes floatUp{
-    0%{
-        transform:translateY(0) scale(.5) rotate(0);
-        opacity:0;
-    }
-    15%{opacity:1;}
-    100%{
-        transform:translateY(-110vh) scale(1.5) rotate(360deg);
-        opacity:0;
-    }
+0%{
+transform:translateY(0) scale(.4);
+opacity:0;
+}
+15%{opacity:1}
+100%{
+transform:translateY(-110vh) rotate(360deg) scale(1.5);
+opacity:0;
+}
 }
 
-/* ================= FINAL ================= */
-
-.finalName{
-    font-size:clamp(45px,11vw,100px);
-    font-weight:900;
-    color:#fff;
-    text-shadow:
-        0 0 10px #ff3d91,
-        0 0 30px #ff3d91,
-        0 0 60px #ff3d91;
+/* FINAL */
+.final{
+font-size:clamp(45px,11vw,105px);
+font-weight:900;
+text-shadow:
+0 0 10px #ff2b84,
+0 0 30px #ff2b84,
+0 0 70px #ff2b84;
 }
 
-.loveText{
-    font-size:clamp(22px,5vw,40px);
-    line-height:1.6;
+.sub{
+font-size:clamp(22px,5vw,38px);
+line-height:1.7;
+margin-top:20px;
 }
 
-/* ================= CONFETTI ================= */
-
-.confetti{
-    position:fixed;
-    top:-20px;
-    width:10px;
-    height:18px;
-    animation:confettiFall 4s linear forwards;
-    z-index:100;
+/* HEARTBEAT LINE */
+.line{
+width:100%;
+height:2px;
+background:#ff408e;
+box-shadow:0 0 15px #ff408e;
+margin:25px auto;
+animation:linePulse 1s infinite;
 }
 
-@keyframes confettiFall{
-    to{
-        transform:translateY(110vh) rotate(720deg);
-    }
+@keyframes linePulse{
+50%{transform:scaleX(.5)}
 }
 
-/* Mobile */
-
+/* MOBILE */
 @media(max-width:600px){
-
-    .poem{
-        font-size:20px;
-    }
-
-    .bigHeart{
-        font-size:75px;
-    }
-
-    .orbit{
-        width:180px;
-        height:180px;
-    }
-
-    .orbit span{
-        font-size:65px;
-    }
+.poem{font-size:20px;line-height:1.75}
+.frame{width:165px;height:165px}
+.frame span{font-size:60px}
+.heartBig{font-size:70px}
 }
 </style>
 </head>
 
-
 <body>
 
-<div class="stars" id="stars"></div>
+<div id="stars"></div>
+<div id="petals"></div>
+
+
+<!-- ================= OPENING ================= -->
+
+<section class="screen show" id="s0">
+<div class="content">
+
+<div class="label">A LITTLE STORY</div>
+
+<div class="bigTitle">ANU</div>
+
+<div class="poem" id="t0"></div>
+
+<div class="tap">TAP ANYWHERE ✨</div>
+
+</div>
+</section>
 
 
 <!-- ================= PAGE 1 ================= -->
 
-<section class="page active" id="p1">
-
+<section class="screen" id="s1">
 <div class="content">
 
-<div class="small">A LITTLE STORY ABOUT YOU...</div>
+<div class="label">SCENE 01 • FIRST FEELING</div>
 
-<div class="bigHeart">❤️</div>
+<div class="heartBig">❤️</div>
 
-<div class="title">ANU</div>
+<div class="poem" id="t1"></div>
 
-<div class="poem" id="text1"></div>
-
-<div class="tap">
-TAP ANYWHERE TO CONTINUE ✨
-</div>
+<div class="tap">TAP TO CONTINUE</div>
 
 </div>
-
 </section>
-
 
 
 <!-- ================= PAGE 2 ================= -->
 
-<section class="page" id="p2">
-
+<section class="screen" id="s2">
 <div class="content">
 
-<div class="small">CHAPTER 01 — ATTRACTION</div>
+<div class="label">SCENE 02 • FLIRT MODE 😏</div>
 
-<div class="orbit">
+<div class="frame">
 <span>🌙</span>
 </div>
 
-<div class="poem" id="text2"></div>
+<div class="poem" id="t2"></div>
 
-<div class="tap">
-TAP TO CONTINUE 💫
-</div>
+<div class="tap">KEEP GOING 💫</div>
 
 </div>
-
 </section>
-
 
 
 <!-- ================= PAGE 3 ================= -->
 
-<section class="page" id="p3">
-
+<section class="screen" id="s3">
 <div class="content">
 
-<div class="small">CHAPTER 02 — FLIRTING 😏</div>
+<div class="label">SCENE 03 • SOMETHING CHANGED</div>
 
-<div class="bigHeart">💗</div>
+<div class="poem" id="t3"></div>
 
-<div class="poem" id="text3"></div>
-
-<div class="tap">
-TAP TO CONTINUE ❤️
-</div>
+<div class="tap">ONE MORE...</div>
 
 </div>
-
 </section>
-
 
 
 <!-- ================= PAGE 4 ================= -->
 
-<section class="page" id="p4">
-
+<section class="screen" id="s4">
 <div class="content">
 
-<div class="small">CHAPTER 03 — SOMETHING REAL</div>
+<div class="label">SCENE 04 • THE TRUTH</div>
 
-<div class="poem" id="text4"></div>
+<div class="heartBig">💗</div>
 
-<div class="tap">
-ONE LAST PAGE... 💌
+<div class="poem" id="t4"></div>
+
+<div class="tap">LAST SCENE 💌</div>
+
 </div>
-
-</div>
-
 </section>
-
 
 
 <!-- ================= PAGE 5 ================= -->
 
-<section class="page" id="p5">
-
+<section class="screen" id="s5">
 <div class="content">
 
-<div class="small">CHAPTER 04 — MY QUESTION</div>
+<div class="label">SCENE 05 • GOWTHAM'S QUESTION</div>
 
-<div class="finalName">ANU ❤️</div>
+<div class="final">ANU ❤️</div>
 
-<div class="poem" id="text5"></div>
+<div class="line"></div>
 
-<div class="buttons">
+<div class="poem" id="t5"></div>
 
 <button onclick="yes()">YES ❤️</button>
-
-<button class="no" onclick="think()">LET ME THINK 😌</button>
-
-</div>
+<button class="think" onclick="think()">LET ME THINK 😌</button>
 
 </div>
-
 </section>
-
 
 
 <script>
 
-/* ================= STARS ================= */
+/* ================= STAR FIELD ================= */
 
-for(let i=0;i<120;i++){
+for(let i=0;i<150;i++){
 
-    let s=document.createElement("div");
+let star=document.createElement("div");
 
-    s.className="star";
+star.className="star";
 
-    s.style.left=Math.random()*100+"%";
-    s.style.top=Math.random()*100+"%";
+star.style.left=Math.random()*100+"%";
+star.style.top=Math.random()*100+"%";
 
-    s.style.animationDelay=Math.random()*3+"s";
+star.style.animationDelay=
+Math.random()*3+"s";
 
-    s.style.transform=`scale(${Math.random()*1.5})`;
+star.style.opacity=
+Math.random();
 
-    document.getElementById("stars").appendChild(s);
+document.getElementById("stars").appendChild(star);
+
 }
 
 
+/* ================= STORY TEXT ================= */
 
-/* ================= TEXT ================= */
+const story={
 
-const texts={
-
-1:`
-சில பேரை நாம சந்திப்போம்...
-<br>
-சில பேரை நாம மறந்துடுவோம்...
+0:`
+ஒரு நாள்...
 <br><br>
 
-ஆனா சில பேர் மட்டும்...
+ஒரு பையன்...
 <br>
 
-<span class="highlight">
-நம்ம story-யே மாற்றிடுவாங்க. ❤️
+ஒரு பொண்ணை சந்தித்தான்...
+<br><br>
+
+அவனுக்கு அப்போ தெரியாது...
+<br>
+
+அவள்தான் அவனோட
+<span class="pink">favourite story</span>
+ஆகப்போறான்னு...
+<br><br>
+
+<strong>And that girl was...</strong>
+<br><br>
+
+<span class="pink">ANU ❤️</span>
+`,
+
+1:`
+உன்னை பார்த்த முதல் நொடி...
+<br><br>
+
+என் கண்கள் ஒரு விஷயம் சொன்னது...
+<br><br>
+
+<span class="pink">
+"இவளை இன்னும் கொஞ்சம் பாரு..."
 </span>
 <br><br>
 
-எனக்கு அந்த "சில பேர்"...
+இவள் சாதாரணமா தெரியல...
 <br>
-<strong>Anu.</strong>
+
+ஏன்னா...
+<br>
+
+<span class="pink">
+என் மனசு கொஞ்சம் வேற மாதிரி react ஆச்சு. ❤️
+</span>
+<br><br>
+
+அதுதான் first warning...
+😌
 `,
 
 2:`
-நிலாவுக்கு அழகு இருக்குனு
+நிலவுக்கு அழகு இருக்குனு
 <br>
 இத்தனை நாள் நம்பிட்டு இருந்தேன்...
 <br><br>
 
 உன்னை பார்த்த பிறகு தான் புரிஞ்சது...
-<br>
+<br><br>
 
-<span class="highlight">
-நிலாவுக்கும் போட்டி இருக்குனு. 🌙❤️
+<span class="pink">
+நிலாவுக்கும் competition இருக்குனு. 🌙
 </span>
 <br><br>
 
-அதுவும்... அந்த போட்டியில
-நிலாவுக்கு chance ரொம்ப கம்மி. 😏
+ஆனா ஒரு small problem...
+<br><br>
+
+<strong>
+அந்த competition-ல
+நிலாவுக்கு chance ரொம்ப கம்மி. 😏❤️
+</strong>
+<br><br>
+
+ஏன்னா...
+<br>
+
+நீ சிரிக்கிறத பார்த்துட்டு
+<br>
+நிலா கூட brightness குறைச்சுக்குது. 😂
 `,
 
 3:`
-Anu...
+உன்னோட பேசுற ஒவ்வொரு நிமிஷமும்...
 <br><br>
 
-நீ Google இல்ல...
+கொஞ்சம் கொஞ்சமா
+<br>
+என்னை உன்னிடம் தொலைக்குது...
+<br><br>
+
+ஆனா அந்த தொலைதல்கூட...
 <br>
 
-ஆனா என் mind-ல
-<br>
-எப்போ பார்த்தாலும்
-<br>
-
-<span class="highlight">
-உன்னோட search தான் ஓடிட்டு இருக்கு. 😏❤️
+<span class="pink">
+எனக்கு ரொம்ப பிடிச்சிருக்கு.
 </span>
 <br><br>
 
-ஒரு problem மட்டும்...
+நீ ஒரு songனா...
 <br>
 
-"Anu"னு search பண்ணினா
+repeatல கேட்கணும்.
+<br><br>
+
+நீ ஒரு placeனா...
 <br>
-<strong>மனசு தான் open ஆகுது.</strong>
+
+திரும்பத் திரும்ப வரணும்.
+<br><br>
+
+நீ ஒரு dreamனா...
+<br>
+
+<span class="pink">
+எழுந்திருக்கவே கூடாது. ❤️
+</span>
 `,
 
 4:`
-உன்னோட பேசுற ஒவ்வொரு நிமிஷமும்...
-<br>
-கொஞ்சம் கொஞ்சமா
-என்னை உன்னிடம் தொலைக்குது.
+காதல் வந்ததா என்று கேட்டால்...
 <br><br>
 
-ஆனா அந்த தொலைதல்கூட
+தேதி சொல்ல முடியாது.
 <br>
-எனக்கு ரொம்ப பிடிச்சிருக்கு...
+
+நேரம் சொல்ல முடியாது.
 <br><br>
 
-<span class="highlight">
-காதல் என்றால் என்னவென்று
-கேட்டால்...
+ஆனா...
+<br>
+
+ஒரு பெயர் மட்டும் சொல்ல முடியும்.
+<br><br>
+
+<span class="pink">"Anu."</span>
+<br><br>
+
+பெரிய கவிதை சொல்ல வேண்டாம்...
+<br><br>
+
+அந்த பெயரை சொல்லும்போது
+<br>
+என் முகத்தில் வரும் smile-ஐ பார்த்தாலே
+<br>
+
+<span class="pink">
+answer புரிஞ்சிடும். ❤️
 </span>
 <br><br>
 
-பெரிய கவிதை சொல்ல மாட்டேன்...
+Maybe...
 <br>
 
-<strong>"Anu"</strong>ன்னு
-ஒரு பெயர் சொல்லி
-அமைதியா சிரிப்பேன். ❤️
+I didn't fall in love suddenly.
+<br><br>
+
+<span class="pink">
+I slowly fell...
+every time I noticed you.
+</span>
 `,
 
 5:`
@@ -532,306 +591,370 @@ Anu...
 நீயாக இருக்க வேண்டாம்...
 <br><br>
 
-<span class="highlight">
+<span class="pink">
 முழு கதையுமே
-உன்னோட சேர்ந்து எழுதணும். ❤️
+உன்னோட சேர்ந்து எழுதணும்.
 </span>
+<br><br>
+
+எல்லா happy moments-லும்...
+<br>
+எல்லா stupid jokes-லும்...
+<br>
+எல்லா random conversations-லும்...
+<br><br>
+
+ஒரு நாள் திரும்பிப் பார்த்தால்...
+<br>
+
+<span class="pink">
+"நம்ம story ரொம்ப அழகா இருந்துச்சு"
+</span>
+<br>
+
+ன்னு சொல்லணும்.
 <br><br>
 
 Anu...
 <br><br>
 
-என் கதையின்
-அடுத்த chapter-ஐ...
-<br>
-
-<strong>என்னோட சேர்ந்து எழுதுவியா?</strong>
+<strong>
+என் கதையின் அடுத்த chapter-ஐ
+என்னோட சேர்ந்து எழுதுவியா? ❤️
+</strong>
 <br><br>
 
-Gowtham-க்கு
-ஒரு chance தருவியா? 💌
+— Gowtham
 `
 
 };
-
 
 
 /* ================= TYPEWRITER ================= */
 
 function typeText(element,html){
 
-    element.innerHTML="";
+element.innerHTML="";
 
-    let temp=document.createElement("div");
+let temp=document.createElement("div");
+temp.innerHTML=html;
 
-    temp.innerHTML=html;
+let chars=[...temp.innerHTML];
+let i=0;
 
-    let text=temp.innerHTML;
+function write(){
 
-    let i=0;
+if(i<chars.length){
 
-    function type(){
+element.innerHTML=
+chars.slice(0,i+1).join("");
 
-        if(i<text.length){
+i++;
 
-            element.innerHTML=text.substring(0,i+1);
+setTimeout(write,14);
 
-            i++;
+}
 
-            setTimeout(type,18);
+}
 
-        }
+write();
 
-    }
-
-    type();
 }
 
 
+/* ================= INITIAL ================= */
 
-typeText(document.getElementById("text1"),texts[1]);
+typeText(
+document.getElementById("t0"),
+story[0]
+);
 
 
+/* ================= PAGE NAVIGATION ================= */
 
-/* ================= PAGE CONTROL ================= */
+let page=0;
+let busy=false;
 
-let current=1;
-let locked=false;
+function next(){
 
-function nextPage(){
+if(busy)return;
 
-    if(locked)return;
+if(page>=5)return;
 
-    locked=true;
+busy=true;
 
-    let old=document.getElementById("p"+current);
+let current=document.getElementById("s"+page);
 
-    old.classList.remove("active");
+current.classList.remove("show");
 
-    current++;
+setTimeout(()=>{
 
-    if(current>5){
-        current=5;
-    }
+page++;
 
-    setTimeout(()=>{
+let nextScreen=document.getElementById("s"+page);
 
-        let next=document.getElementById("p"+current);
+nextScreen.classList.add("show");
 
-        next.classList.add("active");
+typeText(
+document.getElementById("t"+page),
+story[page]
+);
 
-        typeText(
-            document.getElementById("text"+current),
-            texts[current]
-        );
+createHearts(12);
+createPetals(8);
 
-        locked=false;
+busy=false;
 
-    },500);
+},550);
 
-    createHearts(12);
 }
 
 
+/* ================= TAP ================= */
 
-/* ================= TAP ANYWHERE ================= */
+document.body.addEventListener("click",(e)=>{
 
-document.body.addEventListener("click",function(e){
+if(e.target.tagName==="BUTTON")return;
 
-    if(
-        e.target.tagName==="BUTTON"
-    )return;
-
-    if(current<5){
-        nextPage();
-    }
+if(page<5){
+next();
+}
 
 });
-
 
 
 /* ================= HEARTS ================= */
 
 function createHearts(amount){
 
-    for(let i=0;i<amount;i++){
+for(let i=0;i<amount;i++){
 
-        let h=document.createElement("div");
+let h=document.createElement("div");
 
-        h.className="heart";
+h.className="floatHeart";
 
-        h.innerHTML=
-        ["❤️","💗","💕","💖","💘","✨"][Math.floor(Math.random()*6)];
+h.innerHTML=
+["❤️","💗","💕","💖","💘","✨"]
+[Math.floor(Math.random()*6)];
 
-        h.style.left=Math.random()*100+"%";
+h.style.left=Math.random()*100+"%";
 
-        h.style.fontSize=
-        (15+Math.random()*35)+"px";
+h.style.fontSize=
+(15+Math.random()*35)+"px";
 
-        h.style.animationDuration=
-        (3+Math.random()*4)+"s";
+h.style.animationDuration=
+(3+Math.random()*4)+"s";
 
-        document.body.appendChild(h);
+document.body.appendChild(h);
 
-        setTimeout(()=>{
-            h.remove();
-        },7000);
-
-    }
+setTimeout(()=>{
+h.remove();
+},7500);
 
 }
 
+}
+
+
+/* ================= PETALS ================= */
+
+function createPetals(amount){
+
+for(let i=0;i<amount;i++){
+
+let p=document.createElement("div");
+
+p.className="petal";
+
+p.innerHTML=
+["🌸","🌹","🌷","💮"]
+[Math.floor(Math.random()*4)];
+
+p.style.left=Math.random()*100+"%";
+
+p.style.animationDuration=
+(4+Math.random()*5)+"s";
+
+p.style.fontSize=
+(15+Math.random()*20)+"px";
+
+document.getElementById("petals")
+.appendChild(p);
+
+setTimeout(()=>{
+p.remove();
+},9000);
+
+}
+
+}
 
 
 /* ================= YES ================= */
 
 function yes(){
 
-    createConfetti(150);
+createConfetti(180);
+createHearts(40);
+createPetals(30);
 
-    document.body.innerHTML=`
+setTimeout(()=>{
 
-    <div style="
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:25px;
-    background:
-    radial-gradient(circle,#65004f,#16001f,#030006);
-    ">
+document.body.innerHTML=`
 
-        <div>
+<div style="
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+background:
+radial-gradient(circle at center,#720052,#21001f,#030006);
+">
 
-            <div style="
-            font-size:100px;
-            animation:heartbeat 1s infinite;
-            ">
-            ❤️
-            </div>
+<div>
 
-            <div class="finalName">
-            ANU + GOWTHAM
-            </div>
+<div style="
+font-size:95px;
+animation:beat 1s infinite;
+filter:drop-shadow(0 0 30px #ff1680);
+">
+❤️
+</div>
 
-            <div class="loveText">
+<div class="final">
+ANU + GOWTHAM
+</div>
 
-            <br>
+<div class="line"></div>
 
-            <span class="highlight">
-            CHAPTER 06 — US ❤️
-            </span>
+<div class="sub">
 
-            <br><br>
+<span class="pink">
+CHAPTER 06 — US ❤️
+</span>
 
-            “Maybe this is just the beginning...
-            <br>
-            but I hope...
-            <br>
+<br><br>
 
-            <strong>
-            it's our favourite story. 🌸
-            </strong>
+"Maybe this is just the beginning...
+<br>
+but I hope...
+<br>
+this becomes our favourite story."
 
-            <br><br>
+<br><br>
 
-            🥹❤️✨
+🌸 💕 ✨ 💖 ✨ 💕 🌸
 
-            </div>
+<br><br>
 
-        </div>
+<small>
+And yes...
+<br>
+I really like you, Anu.
+</small>
 
-    </div>
+</div>
 
-    `;
+</div>
+
+</div>
+
+`;
+
+},500);
 
 }
-
 
 
 /* ================= THINK ================= */
 
 function think(){
 
-    document.body.innerHTML=`
+document.body.innerHTML=`
 
-    <div style="
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:25px;
-    background:
-    radial-gradient(circle,#42002e,#120018,#030006);
-    ">
+<div style="
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:25px;
+background:
+radial-gradient(circle,#48002f,#130018,#030006);
+">
 
-        <div>
+<div>
 
-            <div style="font-size:80px;">
-            🌸
-            </div>
+<div style="font-size:85px">
+🌸
+</div>
 
-            <div class="title">
-            Take Your Time, Anu
-            </div>
+<div class="bigTitle">
+TAKE YOUR TIME
+</div>
 
-            <div class="poem">
+<div class="sub">
 
-            No pressure...
-            <br><br>
+Anu...
+<br><br>
 
-            உன் answer எதுவாக இருந்தாலும்,
-            <br>
+No pressure.
+<br>
 
-            <span class="highlight">
-            உன் happiness தான் important. ❤️
-            </span>
+No force.
+<br><br>
 
-            <br><br>
+<span class="pink">
+உன் answer எதுவாக இருந்தாலும்,
+<br>
+உன் happiness தான் important. ❤️
+</span>
 
-            — Gowtham
+<br><br>
 
-            </div>
+— Gowtham
 
-        </div>
+</div>
 
-    </div>
+</div>
 
-    `;
+</div>
+
+`;
 
 }
-
 
 
 /* ================= CONFETTI ================= */
 
 function createConfetti(amount){
 
-    for(let i=0;i<amount;i++){
+for(let i=0;i<amount;i++){
 
-        let c=document.createElement("div");
+let c=document.createElement("div");
 
-        c.className="confetti";
+c.style.position="fixed";
+c.style.top="-20px";
+c.style.left=Math.random()*100+"%";
+c.style.width="9px";
+c.style.height="18px";
 
-        c.style.left=Math.random()*100+"%";
+c.style.background=
+["#ff2d7a","#ffca28","#fff","#9c4dff","#00e5ff"]
+[Math.floor(Math.random()*5)];
 
-        c.style.background=
-        ["#ff3b81","#ffcc00","#ffffff","#9b5cff","#00e5ff"]
-        [Math.floor(Math.random()*5)];
+c.style.zIndex="100";
 
-        c.style.animationDelay=
-        Math.random()*2+"s";
+c.style.animation=
+`fall ${2+Math.random()*4}s linear forwards`;
 
-        c.style.transform=
-        `rotate(${Math.random()*360}deg)`;
+document.body.appendChild(c);
 
-        document.body.appendChild(c);
-
-    }
+}
 
 }
 
