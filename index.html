@@ -1,1 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Anu ❤️</title>
 
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .page {
+        display: none;
+        width: 90%;
+        max-width: 430px;
+        min-height: 600px;
+        padding: 35px 25px;
+        text-align: center;
+        background: rgba(255,255,255,0.95);
+        border-radius: 30px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        animation: fade 0.8s ease;
+        position: relative;
+    }
+
+    .page.active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @keyframes fade {
+        from {
+            opacity: 0;
+            transform: scale(0.85) translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .heart {
+        font-size: 70px;
+        animation: heartbeat 1.2s infinite;
+        margin-bottom: 20px;
+    }
+
+    @keyframes heartbeat {
+        0%,100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+
+    h1 {
+        color: #ff3f68;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: #ff477e;
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: #444;
+        font-size: 18px;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    .highlight {
+        color: #ff3f68;
+        font-weight: bold;
+    }
+
+    button {
+        border: none;
+        padding: 14px 30px;
+        border-radius: 30px;
+        background: linear-gradient(135deg,#ff416c,#ff4b8b);
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(255,65,108,0.3);
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.08);
+    }
+
+    .no {
+        background: #ddd;
+        color: #555;
+        margin-left: 10px;
+    }
+
+    .name {
+        font-size: 42px;
+        font-weight: bold;
+        background: linear-gradient(90deg,#ff416c,#ff1493);
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 20px;
+    }
+
+    .small {
+        font-size: 14px;
+        color: #888;
+        margin-top: 20px;
+    }
+
+    .final {
+        font-size: 24px;
+        color: #ff3366;
+        font-weight: bold;
+        line-height: 1.6;
+    }
+
+    .floating-heart {
+        position: absolute;
+        font-size: 25px;
+        animation: float 5s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(100vh) rotate(0deg);
+        }
+        to {
+            transform: translateY(-120vh) rotate(360deg);
+        }
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+
+    <div class="heart">💗</div>
+
+    <div class="name">Anu</div>
+
+    <h2>Oru small question...</h2>
+
+    <p>
+        Un peru <span class="highlight">Anu</span> nu therinjadhula irundhu,
+        en mind-la oru strange feeling start aachu...
+    </p>
+
+    <p>
+        Adhu enna feeling nu theriyuma?
+        ❤️
+    </p>
+
+    <button onclick="nextPage(2)">
+        Enna feeling? 👀
+    </button>
+
+</div>
+
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+
+    <div class="heart">🌸</div>
+
+    <h1>Pickup Line #1</h1>
+
+    <p>
+        “Anu, nee Google illa...
+        <br><br>
+        aana enakku thevaiyana
+        <span class="highlight">answer ellam un kitta dhaan irukku.</span> ❤️”
+    </p>
+
+    <p>
+        Konjam cheesy-ah irukkalam...
+        aana feeling mattum real. 😌
+    </p>
+
+    <button onclick="nextPage(3)">
+        Next one 😳
+    </button>
+
+</div>
+
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+
+    <div class="heart">✨</div>
+
+    <h1>Pickup Line #2</h1>
+
+    <p>
+        “Unna paakumbodhu time stop aaguradhu illa...
+        <br><br>
+        <span class="highlight">
+        time konjam seekiram pogudhu.
+        </span>
+        <br><br>
+        Because I don't want that moment to end.” ❤️
+    </p>
+
+    <button onclick="nextPage(4)">
+        Innum irukku... 💕
+    </button>
+
+</div>
+
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+
+    <div class="heart">🥹❤️</div>
+
+    <h1>Actually...</h1>
+
+    <p>
+        Naan un kitta pesa reason thedala...
+        <br><br>
+
+        <span class="highlight">
+        Un kitta pesanum nu dhaan reason theduren.
+        </span>
+    </p>
+
+    <p>
+        Un smile-ku oru fan aayiten...
+        Un presence-ku oru habit aayiten...
+        ❤️
+    </p>
+
+    <button onclick="nextPage(5)">
+        One last thing... 💌
+    </button>
+
+</div>
+
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+
+    <div class="heart">❤️</div>
+
+    <h1>Anu...</h1>
+
+    <p class="final">
+        En life-la oru beautiful chapter
+        start panna chance enakku tharuviya?
+    </p>
+
+    <p>
+        I don't promise a perfect story...
+        <br>
+        But I can promise
+        <span class="highlight">
+        I'll make it worth remembering.
+        </span>
+    </p>
+
+    <h2>
+        Anu, will you be mine? ❤️
+    </h2>
+
+    <div>
+        <button onclick="yesAnswer()">
+            YES ❤️
+        </button>
+
+        <button class="no" onclick="noAnswer()">
+            Let me think 😌
+        </button>
+    </div>
+
+    <p class="small">
+        — With love, Gowtham ❤️
+    </p>
+
+</div>
+
+
+<script>
+
+function nextPage(pageNumber) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + pageNumber)
+        .classList.add("active");
+
+    createHearts();
+}
+
+
+function yesAnswer() {
+
+    document.querySelector(".page.active").innerHTML = `
+
+        <div class="heart">💖</div>
+
+        <h1>Yesssss! 🥹❤️</h1>
+
+        <p class="final">
+            Anu + Gowtham
+            <br><br>
+            Maybe this is just the beginning...
+            <br>
+            but I hope it's a beautiful one. 🌸
+        </p>
+
+        <p>
+            Thank you for giving this story
+            a chance. ❤️
+        </p>
+
+        <div style="font-size:40px;">
+            💕🌸💖🌷💗
+        </div>
+
+    `;
+
+    createHearts();
+}
+
+
+function noAnswer() {
+
+    document.querySelector(".page.active").innerHTML = `
+
+        <div class="heart">🥹</div>
+
+        <h1>That's okay, Anu ❤️</h1>
+
+        <p>
+            Take your time.
+            <br><br>
+            No pressure...
+            <br>
+            Your happiness matters more. 🌸
+        </p>
+
+        <p>
+            But one thing won't change...
+            <br><br>
+            <span class="highlight">
+            You will always be special to me. ❤️
+            </span>
+        </p>
+
+        <p class="small">
+            — Gowtham
+        </p>
+
+    `;
+
+    createHearts();
+}
+
+
+function createHearts() {
+
+    for(let i = 0; i < 8; i++) {
+
+        let heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+
+        heart.innerHTML =
+            ["❤️","💕","💗","💖","🌸"][Math.floor(Math.random()*5)];
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 7000);
+    }
+}
+
+</script>
+
+</body>
+</html>
