@@ -1,392 +1,762 @@
-```html
 <!DOCTYPE html>
 <html lang="ta">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ANU ❤️ GOWTHAM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gowtham ❤️ Anu | Our Story</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 html,body{
-width:100%;
-height:100%;
-overflow:hidden;
-font-family:"Segoe UI",Arial,sans-serif;
-background:#030007;
-color:white;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Georgia, "Noto Serif Tamil", serif;
+    background:#020806;
+    color:white;
 }
 
-/* BACKGROUND */
+/* ================= BACKGROUND ================= */
+
 body{
-background:
-radial-gradient(circle at 50% 30%,#650047 0%,#250022 28%,#08000d 65%,#000 100%);
+    background:
+    radial-gradient(circle at 50% 20%,rgba(49,255,150,.15),transparent 35%),
+    linear-gradient(180deg,#03120c,#020605 60%,#000);
 }
 
-#stars,.petals,.sparkles{
-position:fixed;
-inset:0;
-pointer-events:none;
+canvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
 }
 
-.star{
-position:absolute;
-width:2px;
-height:2px;
-border-radius:50%;
-background:white;
-box-shadow:0 0 8px white;
-animation:twinkle 2s infinite alternate;
+/* cinematic grain */
+
+.grain{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:20;
+    opacity:.08;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
-@keyframes twinkle{
-from{opacity:.1;transform:scale(.5)}
-to{opacity:1;transform:scale(1.7)}
-}
+/* ================= SCREENS ================= */
 
-/* SCREENS */
 .screen{
-position:absolute;
-inset:0;
-display:none;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:25px;
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:25px;
+    opacity:0;
+    visibility:hidden;
+    transform:scale(1.08);
+    transition:
+        opacity 1.3s ease,
+        transform 1.5s cubic-bezier(.2,.8,.2,1);
+    z-index:5;
 }
 
-.screen.show{
-display:flex;
-animation:cinemaIn 1.2s ease forwards;
+.screen.active{
+    opacity:1;
+    visibility:visible;
+    transform:scale(1);
 }
 
-@keyframes cinemaIn{
-0%{
-opacity:0;
-transform:scale(1.15);
-filter:blur(18px);
-}
-100%{
-opacity:1;
-transform:scale(1);
-filter:blur(0);
-}
-}
+/* ================= CONTENT ================= */
 
 .content{
-width:min(900px,94vw);
+    max-width:850px;
+    position:relative;
+    z-index:5;
 }
 
-/* CINEMA LABEL */
-.label{
-font-size:12px;
-letter-spacing:6px;
-color:#ffb2d3;
-margin-bottom:25px;
-text-transform:uppercase;
+.small{
+    letter-spacing:7px;
+    text-transform:uppercase;
+    color:#8cffc4;
+    font-size:12px;
+    margin-bottom:22px;
 }
 
-.bigTitle{
-font-size:clamp(55px,14vw,125px);
-font-weight:900;
-letter-spacing:5px;
-background:linear-gradient(
-90deg,
-#fff,
-#ff559b,
-#fff,
-#ff559b,
-#fff
-);
-background-size:300%;
--webkit-background-clip:text;
-color:transparent;
-animation:shine 4s linear infinite;
+.title{
+    font-size:clamp(40px,8vw,100px);
+    font-weight:normal;
+    letter-spacing:3px;
+    text-shadow:
+        0 0 20px rgba(80,255,160,.35),
+        0 0 60px rgba(80,255,160,.15);
 }
 
-@keyframes shine{
-to{background-position:300%}
+.subtitle{
+    margin-top:20px;
+    font-size:clamp(17px,3vw,27px);
+    line-height:1.9;
+    color:#e9fff2;
 }
 
-/* TYPEWRITER */
 .poem{
-font-size:clamp(19px,4vw,31px);
-line-height:1.9;
-min-height:250px;
-margin:20px auto;
-text-shadow:0 3px 20px #000;
+    margin-top:30px;
+    font-size:clamp(20px,3.4vw,34px);
+    line-height:1.9;
+    color:#fff;
 }
 
-.pink{
-color:#ff62a6;
-font-weight:700;
-text-shadow:0 0 18px #ff1878;
+.highlight{
+    color:#8cffc4;
+    text-shadow:0 0 18px rgba(100,255,170,.7);
 }
 
-/* HEART */
-.heartBig{
-font-size:95px;
-filter:drop-shadow(0 0 35px #ff1978);
-animation:beat 1.1s infinite;
+.gold{
+    color:#ffe59a;
+    text-shadow:0 0 20px rgba(255,220,120,.5);
 }
 
-@keyframes beat{
-0%,100%{transform:scale(1)}
-15%{transform:scale(1.25)}
-30%{transform:scale(1)}
-45%{transform:scale(1.16)}
-60%{transform:scale(1)}
-}
+/* ================= BUTTON ================= */
 
-/* MOVIE FRAME */
-.frame{
-width:220px;
-height:220px;
-margin:auto auto 25px;
-border-radius:50%;
-border:2px solid #ff4c98;
-box-shadow:
-0 0 20px #ff227d,
-inset 0 0 35px #ff227d;
-display:flex;
-justify-content:center;
-align-items:center;
-animation:spin 12s linear infinite;
-}
-
-.frame span{
-font-size:85px;
-animation:counter 12s linear infinite;
-}
-
-@keyframes spin{
-to{transform:rotate(360deg)}
-}
-
-@keyframes counter{
-to{transform:rotate(-360deg)}
-}
-
-/* BUTTONS */
 button{
-border:0;
-padding:16px 38px;
-border-radius:50px;
-margin:7px;
-font-size:17px;
-font-weight:700;
-color:white;
-cursor:pointer;
-background:linear-gradient(90deg,#ff176f,#ff65ae);
-box-shadow:0 0 25px #ff227d;
-transition:.3s;
+    margin-top:42px;
+    padding:15px 34px;
+    border:1px solid rgba(140,255,196,.6);
+    border-radius:50px;
+    background:rgba(0,0,0,.25);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    letter-spacing:2px;
+    backdrop-filter:blur(10px);
+    transition:.4s;
 }
 
 button:hover{
-transform:scale(1.1);
+    background:#8cffc4;
+    color:#021009;
+    box-shadow:
+        0 0 20px #8cffc4,
+        0 0 60px rgba(140,255,196,.4);
+    transform:scale(1.08);
 }
 
-.think{
-background:#29232d;
-box-shadow:none;
+/* ================= HEART ================= */
+
+.heart{
+    width:90px;
+    height:90px;
+    margin:0 auto 35px;
+    position:relative;
+    transform:rotate(-45deg);
+    animation:heartbeat 1.4s infinite;
 }
 
-/* TAP */
-.tap{
-font-size:12px;
-letter-spacing:4px;
-color:#aaa;
-animation:pulse 1.5s infinite;
+.heart:before,
+.heart:after{
+    content:"";
+    position:absolute;
+    width:90px;
+    height:90px;
+    background:#ff496c;
+    border-radius:50%;
 }
 
-@keyframes pulse{
-50%{opacity:.2}
+.heart{
+    background:#ff496c;
 }
 
-/* FLOATING PETALS */
+.heart:before{
+    top:-45px;
+    left:0;
+}
+
+.heart:after{
+    left:45px;
+    top:0;
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:rotate(-45deg) scale(1)}
+    50%{transform:rotate(-45deg) scale(1.18)}
+}
+
+/* ================= FLOATING PARTICLES ================= */
+
+.particle{
+    position:fixed;
+    width:4px;
+    height:4px;
+    background:#b6ffd8;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:2;
+    animation:float 7s linear infinite;
+    box-shadow:0 0 12px #8cffc4;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(110vh) scale(.3);
+        opacity:0;
+    }
+    20%{opacity:1}
+    80%{opacity:1}
+    100%{
+        transform:translateY(-20vh) scale(1);
+        opacity:0;
+    }
+}
+
+/* ================= PETALS ================= */
+
 .petal{
-position:fixed;
-top:-50px;
-font-size:22px;
-animation:fall linear forwards;
-z-index:20;
+    position:fixed;
+    top:-30px;
+    font-size:20px;
+    z-index:3;
+    pointer-events:none;
+    animation:petalfall linear forwards;
 }
 
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(720deg);
-opacity:0;
-}
-}
-
-/* HEART FLOAT */
-.floatHeart{
-position:fixed;
-bottom:-50px;
-font-size:25px;
-animation:floatUp linear forwards;
-z-index:10;
-}
-
-@keyframes floatUp{
-0%{
-transform:translateY(0) scale(.4);
-opacity:0;
-}
-15%{opacity:1}
-100%{
-transform:translateY(-110vh) rotate(360deg) scale(1.5);
-opacity:0;
-}
+@keyframes petalfall{
+    0%{
+        transform:translateY(-50px) rotate(0deg);
+        opacity:0;
+    }
+    15%{opacity:1}
+    100%{
+        transform:
+        translateY(110vh)
+        translateX(120px)
+        rotate(720deg);
+        opacity:0;
+    }
 }
 
-/* FINAL */
-.final{
-font-size:clamp(45px,11vw,105px);
-font-weight:900;
-text-shadow:
-0 0 10px #ff2b84,
-0 0 30px #ff2b84,
-0 0 70px #ff2b84;
+/* ================= FIELD ================= */
+
+.field{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:24%;
+    background:
+    linear-gradient(
+        180deg,
+        transparent,
+        rgba(8,45,25,.7)
+    );
+    overflow:hidden;
 }
 
-.sub{
-font-size:clamp(22px,5vw,38px);
-line-height:1.7;
-margin-top:20px;
+.field:before{
+    content:"🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾";
+    position:absolute;
+    bottom:0;
+    width:100%;
+    font-size:55px;
+    letter-spacing:18px;
+    opacity:.5;
+    animation:wind 4s ease-in-out infinite alternate;
 }
 
-/* HEARTBEAT LINE */
-.line{
-width:100%;
-height:2px;
-background:#ff408e;
-box-shadow:0 0 15px #ff408e;
-margin:25px auto;
-animation:linePulse 1s infinite;
+@keyframes wind{
+    from{transform:skewX(-2deg)}
+    to{transform:skewX(3deg)}
 }
 
-@keyframes linePulse{
-50%{transform:scaleX(.5)}
+/* ================= CAMERA LIGHT ================= */
+
+.light{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(255,245,190,.13),transparent 65%);
+    top:-200px;
+    left:50%;
+    transform:translateX(-50%);
+    animation:sunmove 8s ease-in-out infinite alternate;
 }
 
-/* MOBILE */
+@keyframes sunmove{
+    from{transform:translateX(-65%) scale(.8)}
+    to{transform:translateX(-35%) scale(1.2)}
+}
+
+/* ================= CHAPTER ================= */
+
+.chapter{
+    font-size:12px;
+    letter-spacing:8px;
+    color:#ffe59a;
+    margin-bottom:20px;
+}
+
+/* ================= FINAL ================= */
+
+.finalTitle{
+    font-size:clamp(45px,10vw,115px);
+    line-height:1;
+}
+
+.signature{
+    margin-top:30px;
+    font-size:20px;
+    color:#8cffc4;
+    letter-spacing:3px;
+}
+
+/* ================= CHOICE ================= */
+
+.choices{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.yes{
+    border-color:#ff6b8b;
+}
+
+.yes:hover{
+    background:#ff6b8b;
+    color:white;
+    box-shadow:0 0 40px #ff6b8b;
+}
+
+/* ================= MOBILE ================= */
+
 @media(max-width:600px){
-.poem{font-size:20px;line-height:1.75}
-.frame{width:165px;height:165px}
-.frame span{font-size:60px}
-.heartBig{font-size:70px}
+
+    .content{
+        width:94%;
+    }
+
+    .poem{
+        font-size:20px;
+    }
+
+    .subtitle{
+        font-size:16px;
+    }
+
+    .field:before{
+        font-size:35px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div id="stars"></div>
-<div id="petals"></div>
+<canvas id="stars"></canvas>
+<div class="grain"></div>
 
+<div class="light"></div>
+<div class="field"></div>
 
-<!-- ================= OPENING ================= -->
+<!-- ================= INTRO ================= -->
 
-<section class="screen show" id="s0">
+<section class="screen active" id="s0">
+
 <div class="content">
 
-<div class="label">A LITTLE STORY</div>
+<div class="small">
+Agriculture Engineering • A Little Love Story
+</div>
 
-<div class="bigTitle">ANU</div>
+<div class="heart"></div>
 
-<div class="poem" id="t0"></div>
+<div class="title">
+GOWTHAM
+<span class="highlight">×</span>
+ANU
+</div>
 
-<div class="tap">TAP ANYWHERE ✨</div>
+<div class="subtitle">
+ஒரே college...<br>
+ஒரே department...<br>
+ஆனா தெரியாமலே<br>
+ஒரே கதைக்குள்ள வந்த இரண்டு பேர்...
+</div>
+
+<button onclick="next()">BEGIN OUR STORY ✦</button>
 
 </div>
 </section>
 
 
-<!-- ================= PAGE 1 ================= -->
+<!-- ================= CHAPTER 1 ================= -->
 
 <section class="screen" id="s1">
+
 <div class="content">
 
-<div class="label">SCENE 01 • FIRST FEELING</div>
+<div class="chapter">
+CHAPTER 01 — THE FIRST SEASON
+</div>
 
-<div class="heartBig">❤️</div>
+<div class="title">
+🌱
+</div>
 
-<div class="poem" id="t1"></div>
+<div class="poem">
 
-<div class="tap">TAP TO CONTINUE</div>
+“மண்ணை படிக்க வந்தோம்...<br>
+
+ஆனா உன்னை பார்த்த பிறகு<br>
+
+என் மனசையும் படிக்க ஆரம்பிச்சுட்டேன்.”
+<br><br>
+
+<span class="highlight">
+Agriculture Engineering
+எனக்கு ஒரு course...
+</span>
+
+<br>
+
+ஆனா...
+
+<span class="gold">
+நீ வந்ததுக்கப்புறம்<br>
+அது ஒரு love story ஆகிடுச்சு.
+</span>
+
+</div>
+
+<button onclick="next()">NEXT SEASON →</button>
 
 </div>
 </section>
 
 
-<!-- ================= PAGE 2 ================= -->
+<!-- ================= CHAPTER 2 ================= -->
 
 <section class="screen" id="s2">
+
 <div class="content">
 
-<div class="label">SCENE 02 • FLIRT MODE 😏</div>
-
-<div class="frame">
-<span>🌙</span>
+<div class="chapter">
+CHAPTER 02 — BETWEEN THE FIELDS
 </div>
 
-<div class="poem" id="t2"></div>
+<div class="poem">
 
-<div class="tap">KEEP GOING 💫</div>
+“நெல் வயலில் காற்று வீசும்போது<br>
+பயிர்கள் ஆடும்...
+
+ஆனா நீ அருகில் வரும்போது<br>
+என் heart தான் அதிகமா ஆடுது.” 🌾
+
+<br><br>
+
+<span class="highlight">
+நிலவுக்கு ஒரு அழகு இருக்கு...
+</span>
+
+<br>
+
+ஆனா Anu...
+
+<br>
+
+“நிலவை ரசிக்கிறவன் நான்...
+
+<span class="gold">
+உன்னை ரசிக்கிறவன்
+என் மனசு.”
+</span>
+
+</div>
+
+<button onclick="next()">KEEP WALKING →</button>
 
 </div>
 </section>
 
 
-<!-- ================= PAGE 3 ================= -->
+<!-- ================= CHAPTER 3 ================= -->
 
 <section class="screen" id="s3">
+
 <div class="content">
 
-<div class="label">SCENE 03 • SOMETHING CHANGED</div>
+<div class="chapter">
+CHAPTER 03 — THE LITTLE THINGS
+</div>
 
-<div class="poem" id="t3"></div>
+<div class="poem">
 
-<div class="tap">ONE MORE...</div>
+Lab-ல இருந்தாலும்...<br>
+Field-ல இருந்தாலும்...<br>
+Class-ல இருந்தாலும்...
+
+<br><br>
+
+என் கண்கள் மட்டும்<br>
+
+<span class="highlight">
+ஒரு particular direction-ஐ
+தேடும்...
+</span>
+
+<br><br>
+
+அந்த direction-ல<br>
+
+<span class="gold">
+நீ இருந்தா போதும்.
+</span>
+
+<br><br>
+
+“நீ ஒரு cropனா...
+
+உன்னை தினமும் பார்த்துக்கிட்டே இருக்கணும்.
+
+நீ ஒரு seasonனா...
+
+<span class="highlight">
+அந்த season முடியவே கூடாது.”
+</span>
+
+</div>
+
+<button onclick="next()">ONE MORE →</button>
 
 </div>
 </section>
 
 
-<!-- ================= PAGE 4 ================= -->
+<!-- ================= CHAPTER 4 ================= -->
 
 <section class="screen" id="s4">
+
 <div class="content">
 
-<div class="label">SCENE 04 • THE TRUTH</div>
+<div class="chapter">
+CHAPTER 04 — THE REALIZATION
+</div>
 
-<div class="heartBig">💗</div>
+<div class="title">
+❤️
+</div>
 
-<div class="poem" id="t4"></div>
+<div class="poem">
 
-<div class="tap">LAST SCENE 💌</div>
+“காதல் எப்போது வந்தது
+என்று தெரியவில்லை...
+
+<br>
+
+ஆனா...
+
+உன் பெயர் phone-ல் தெரியும்
+ஒவ்வொரு முறையும்
+
+<span class="highlight">
+என் முகத்தில் வரும் smile-ஐ
+மறைக்க முடியவில்லை.
+</span>
+
+<br><br>
+
+மண்ணில் விதை போட்டா
+அது ஒரு நாள் செடியாகும்...
+
+<br>
+
+அதே மாதிரி...
+
+<span class="gold">
+என் மனசில் உன்னை விதைத்த
+அந்த feeling...
+
+இப்போ காதலாக வளர்ந்துடுச்சு.”
+</span>
+
+</div>
+
+<button onclick="next()">THE LAST CHAPTER →</button>
 
 </div>
 </section>
 
 
-<!-- ================= PAGE 5 ================= -->
+<!-- ================= CHAPTER 5 ================= -->
 
 <section class="screen" id="s5">
+
 <div class="content">
 
-<div class="label">SCENE 05 • GOWTHAM'S QUESTION</div>
+<div class="chapter">
+CHAPTER 05 — THE QUESTION
+</div>
 
-<div class="final">ANU ❤️</div>
+<div class="finalTitle">
+ANU
+</div>
 
-<div class="line"></div>
+<div class="poem">
 
-<div class="poem" id="t5"></div>
+“வாழ்க்கை ஒரு விவசாய நிலம் மாதிரி...
 
-<button onclick="yes()">YES ❤️</button>
-<button class="think" onclick="think()">LET ME THINK 😌</button>
+என்ன விதைக்கிறோமோ
+அதுதான் ஒரு நாள் விளையும்.
+
+<br><br>
+
+நான் அதில்...
+
+<span class="highlight">
+ஒரு கனவை விதைக்கிறேன்.
+</span>
+
+<br><br>
+
+அந்த கனவுல...
+
+நானும் நீயும்...
+ஒரே பாதையில்...
+ஒரே வாழ்க்கையில்...
+ஒரே கதையில்...
+
+<br><br>
+
+<span class="gold">
+என் வாழ்க்கையின்
+அடுத்த season-ஐ...
+
+என்னோட சேர்ந்து
+cultivate பண்ணுவியா?”
+</span>
+
+</div>
+
+<div class="signature">
+— GOWTHAM ❤️
+</div>
+
+<div class="choices">
+
+<button class="yes" onclick="yesAnswer()">
+YES ❤️
+</button>
+
+<button onclick="thinkAnswer()">
+LET ME THINK 🌱
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= YES ================= -->
+
+<section class="screen" id="yesScreen">
+
+<div class="content">
+
+<div class="heart"></div>
+
+<div class="chapter">
+CHAPTER 06
+</div>
+
+<div class="finalTitle">
+US ❤️
+</div>
+
+<div class="poem">
+
+“இது ஒரு proposal இல்ல...
+
+<br>
+
+<span class="highlight">
+இது ஒரு புதிய beginning.
+</span>
+
+<br><br>
+
+ஒரே field...
+
+ஒரே dream...
+
+ஒரே journey...
+
+<br><br>
+
+<span class="gold">
+Gowtham + Anu
+</span>
+
+<br><br>
+
+From Soil 🌱<br>
+To Soul ❤️
+
+</div>
+
+<div class="signature">
+OUR STORY STARTS NOW...
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= THINK ================= -->
+
+<section class="screen" id="thinkScreen">
+
+<div class="content">
+
+<div class="chapter">
+CHAPTER 06
+</div>
+
+<div class="title">
+🌱
+</div>
+
+<div class="poem">
+
+“சில விதைகள் உடனே முளைக்காது...
+
+அதுக்கு time தேவைப்படும்.
+
+<br><br>
+
+அதே மாதிரி...
+
+என் feeling-க்கும்
+உன் answer-க்கும்
+நான் time கொடுக்கிறேன்.
+
+<br><br>
+
+<span class="highlight">
+Take your time, Anu. ❤️
+</span>
+
+</div>
+
+<div class="signature">
+— Gowtham
+</div>
 
 </div>
 </section>
@@ -394,572 +764,391 @@ animation:linePulse 1s infinite;
 
 <script>
 
-/* ================= STAR FIELD ================= */
-
-for(let i=0;i<150;i++){
-
-let star=document.createElement("div");
-
-star.className="star";
-
-star.style.left=Math.random()*100+"%";
-star.style.top=Math.random()*100+"%";
-
-star.style.animationDelay=
-Math.random()*3+"s";
-
-star.style.opacity=
-Math.random();
-
-document.getElementById("stars").appendChild(star);
-
-}
-
-
-/* ================= STORY TEXT ================= */
-
-const story={
-
-0:`
-ஒரு நாள்...
-<br><br>
-
-ஒரு பையன்...
-<br>
-
-ஒரு பொண்ணை சந்தித்தான்...
-<br><br>
-
-அவனுக்கு அப்போ தெரியாது...
-<br>
-
-அவள்தான் அவனோட
-<span class="pink">favourite story</span>
-ஆகப்போறான்னு...
-<br><br>
-
-<strong>And that girl was...</strong>
-<br><br>
-
-<span class="pink">ANU ❤️</span>
-`,
-
-1:`
-உன்னை பார்த்த முதல் நொடி...
-<br><br>
-
-என் கண்கள் ஒரு விஷயம் சொன்னது...
-<br><br>
-
-<span class="pink">
-"இவளை இன்னும் கொஞ்சம் பாரு..."
-</span>
-<br><br>
-
-இவள் சாதாரணமா தெரியல...
-<br>
-
-ஏன்னா...
-<br>
-
-<span class="pink">
-என் மனசு கொஞ்சம் வேற மாதிரி react ஆச்சு. ❤️
-</span>
-<br><br>
-
-அதுதான் first warning...
-😌
-`,
-
-2:`
-நிலவுக்கு அழகு இருக்குனு
-<br>
-இத்தனை நாள் நம்பிட்டு இருந்தேன்...
-<br><br>
-
-உன்னை பார்த்த பிறகு தான் புரிஞ்சது...
-<br><br>
-
-<span class="pink">
-நிலாவுக்கும் competition இருக்குனு. 🌙
-</span>
-<br><br>
-
-ஆனா ஒரு small problem...
-<br><br>
-
-<strong>
-அந்த competition-ல
-நிலாவுக்கு chance ரொம்ப கம்மி. 😏❤️
-</strong>
-<br><br>
-
-ஏன்னா...
-<br>
-
-நீ சிரிக்கிறத பார்த்துட்டு
-<br>
-நிலா கூட brightness குறைச்சுக்குது. 😂
-`,
-
-3:`
-உன்னோட பேசுற ஒவ்வொரு நிமிஷமும்...
-<br><br>
-
-கொஞ்சம் கொஞ்சமா
-<br>
-என்னை உன்னிடம் தொலைக்குது...
-<br><br>
-
-ஆனா அந்த தொலைதல்கூட...
-<br>
-
-<span class="pink">
-எனக்கு ரொம்ப பிடிச்சிருக்கு.
-</span>
-<br><br>
-
-நீ ஒரு songனா...
-<br>
-
-repeatல கேட்கணும்.
-<br><br>
-
-நீ ஒரு placeனா...
-<br>
-
-திரும்பத் திரும்ப வரணும்.
-<br><br>
-
-நீ ஒரு dreamனா...
-<br>
-
-<span class="pink">
-எழுந்திருக்கவே கூடாது. ❤️
-</span>
-`,
-
-4:`
-காதல் வந்ததா என்று கேட்டால்...
-<br><br>
-
-தேதி சொல்ல முடியாது.
-<br>
-
-நேரம் சொல்ல முடியாது.
-<br><br>
-
-ஆனா...
-<br>
-
-ஒரு பெயர் மட்டும் சொல்ல முடியும்.
-<br><br>
-
-<span class="pink">"Anu."</span>
-<br><br>
-
-பெரிய கவிதை சொல்ல வேண்டாம்...
-<br><br>
-
-அந்த பெயரை சொல்லும்போது
-<br>
-என் முகத்தில் வரும் smile-ஐ பார்த்தாலே
-<br>
-
-<span class="pink">
-answer புரிஞ்சிடும். ❤️
-</span>
-<br><br>
-
-Maybe...
-<br>
-
-I didn't fall in love suddenly.
-<br><br>
-
-<span class="pink">
-I slowly fell...
-every time I noticed you.
-</span>
-`,
-
-5:`
-என் வாழ்க்கை ஒரு புத்தகம் என்றால்...
-<br><br>
-
-அதில் அழகான ஒரு பக்கம்
-நீயாக இருக்க வேண்டாம்...
-<br><br>
-
-<span class="pink">
-முழு கதையுமே
-உன்னோட சேர்ந்து எழுதணும்.
-</span>
-<br><br>
-
-எல்லா happy moments-லும்...
-<br>
-எல்லா stupid jokes-லும்...
-<br>
-எல்லா random conversations-லும்...
-<br><br>
-
-ஒரு நாள் திரும்பிப் பார்த்தால்...
-<br>
-
-<span class="pink">
-"நம்ம story ரொம்ப அழகா இருந்துச்சு"
-</span>
-<br>
-
-ன்னு சொல்லணும்.
-<br><br>
-
-Anu...
-<br><br>
-
-<strong>
-என் கதையின் அடுத்த chapter-ஐ
-என்னோட சேர்ந்து எழுதுவியா? ❤️
-</strong>
-<br><br>
-
-— Gowtham
-`
-
-};
-
-
-/* ================= TYPEWRITER ================= */
-
-function typeText(element,html){
-
-element.innerHTML="";
-
-let temp=document.createElement("div");
-temp.innerHTML=html;
-
-let chars=[...temp.innerHTML];
-let i=0;
-
-function write(){
-
-if(i<chars.length){
-
-element.innerHTML=
-chars.slice(0,i+1).join("");
-
-i++;
-
-setTimeout(write,14);
-
-}
-
-}
-
-write();
-
-}
-
-
-/* ================= INITIAL ================= */
-
-typeText(
-document.getElementById("t0"),
-story[0]
-);
-
-
-/* ================= PAGE NAVIGATION ================= */
-
-let page=0;
-let busy=false;
+/* =================================================
+   SCREEN SYSTEM
+================================================= */
+
+let current = 0;
+
+const screens = [
+    document.getElementById("s0"),
+    document.getElementById("s1"),
+    document.getElementById("s2"),
+    document.getElementById("s3"),
+    document.getElementById("s4"),
+    document.getElementById("s5")
+];
 
 function next(){
 
-if(busy)return;
+    if(current < screens.length - 1){
 
-if(page>=5)return;
+        screens[current].classList.remove("active");
 
-busy=true;
+        current++;
 
-let current=document.getElementById("s"+page);
+        screens[current].classList.add("active");
 
-current.classList.remove("show");
+        cinematicEffect();
+    }
+}
 
-setTimeout(()=>{
 
-page++;
+/* =================================================
+   YES
+================================================= */
 
-let nextScreen=document.getElementById("s"+page);
+function yesAnswer(){
 
-nextScreen.classList.add("show");
+    document.getElementById("s5").classList.remove("active");
 
-typeText(
-document.getElementById("t"+page),
-story[page]
-);
+    document.getElementById("yesScreen").classList.add("active");
 
-createHearts(12);
-createPetals(8);
-
-busy=false;
-
-},550);
+    createMassiveHearts();
+    createConfetti();
 
 }
 
 
-/* ================= TAP ================= */
+/* =================================================
+   THINK
+================================================= */
+
+function thinkAnswer(){
+
+    document.getElementById("s5").classList.remove("active");
+
+    document.getElementById("thinkScreen").classList.add("active");
+
+}
+
+
+/* =================================================
+   CINEMATIC EFFECT
+================================================= */
+
+function cinematicEffect(){
+
+    createPetals();
+
+    if(current === 1){
+        createPetals();
+    }
+
+    if(current === 2){
+        createPetals();
+    }
+
+    if(current === 4){
+        createHearts();
+    }
+}
+
+
+/* =================================================
+   FLOATING PARTICLES
+================================================= */
+
+function createParticles(){
+
+    for(let i=0;i<70;i++){
+
+        const p = document.createElement("div");
+
+        p.className="particle";
+
+        p.style.left=Math.random()*100+"vw";
+
+        p.style.animationDelay=(Math.random()*7)+"s";
+
+        p.style.animationDuration=(5+Math.random()*7)+"s";
+
+        document.body.appendChild(p);
+    }
+}
+
+
+/* =================================================
+   PETALS
+================================================= */
+
+function createPetals(){
+
+    const symbols=["🌸","🌿","🍃","🌾"];
+
+    for(let i=0;i<12;i++){
+
+        const petal=document.createElement("div");
+
+        petal.className="petal";
+
+        petal.innerText=
+        symbols[Math.floor(Math.random()*symbols.length)];
+
+        petal.style.left=Math.random()*100+"vw";
+
+        petal.style.animationDuration=
+        (5+Math.random()*5)+"s";
+
+        petal.style.animationDelay=
+        (Math.random()*2)+"s";
+
+        document.body.appendChild(petal);
+
+        setTimeout(()=>{
+            petal.remove();
+        },10000);
+    }
+}
+
+
+/* =================================================
+   HEARTS
+================================================= */
+
+function createHearts(){
+
+    for(let i=0;i<15;i++){
+
+        const h=document.createElement("div");
+
+        h.innerText="❤️";
+
+        h.style.position="fixed";
+        h.style.left=Math.random()*100+"vw";
+        h.style.bottom="-30px";
+        h.style.fontSize=(15+Math.random()*25)+"px";
+        h.style.zIndex="10";
+
+        h.style.animation=
+        "floatUp "+(4+Math.random()*4)+"s linear forwards";
+
+        document.body.appendChild(h);
+
+        setTimeout(()=>{
+            h.remove();
+        },8000);
+    }
+}
+
+
+function createMassiveHearts(){
+
+    for(let i=0;i<70;i++){
+
+        const h=document.createElement("div");
+
+        h.innerText=
+        Math.random()>.5 ? "❤️" : "🌸";
+
+        h.style.position="fixed";
+        h.style.left=Math.random()*100+"vw";
+        h.style.top=Math.random()*100+"vh";
+        h.style.fontSize=(15+Math.random()*35)+"px";
+        h.style.zIndex="50";
+
+        h.style.animation=
+        "floatUp "+(3+Math.random()*5)+"s linear forwards";
+
+        document.body.appendChild(h);
+
+        setTimeout(()=>{
+            h.remove();
+        },9000);
+    }
+}
+
+
+/* =================================================
+   CONFETTI
+================================================= */
+
+function createConfetti(){
+
+    for(let i=0;i<120;i++){
+
+        const c=document.createElement("div");
+
+        c.style.position="fixed";
+
+        c.style.width="7px";
+        c.style.height="7px";
+
+        c.style.background=
+        Math.random()>.5 ? "#8cffc4" : "#ffe59a";
+
+        c.style.left=Math.random()*100+"vw";
+        c.style.top="-10px";
+
+        c.style.zIndex="100";
+
+        c.style.borderRadius="50%";
+
+        c.style.animation=
+        "confettiFall "+(2+Math.random()*5)+"s linear forwards";
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>{
+            c.remove();
+        },8000);
+    }
+}
+
+
+/* =================================================
+   STAR CANVAS
+================================================= */
+
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+let stars=[];
+
+function resize(){
+
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+}
+
+window.addEventListener("resize",resize);
+
+resize();
+
+
+for(let i=0;i<180;i++){
+
+    stars.push({
+
+        x:Math.random()*window.innerWidth,
+
+        y:Math.random()*window.innerHeight,
+
+        r:Math.random()*1.7,
+
+        a:Math.random(),
+
+        speed:.002+Math.random()*.006
+
+    });
+}
+
+
+function drawStars(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    stars.forEach(s=>{
+
+        s.a += s.speed;
+
+        let alpha=
+        .25+
+        Math.abs(Math.sin(s.a))*0.75;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            s.x,
+            s.y,
+            s.r,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fillStyle=
+        `rgba(180,255,220,${alpha})`;
+
+        ctx.fill();
+
+    });
+
+    requestAnimationFrame(drawStars);
+}
+
+drawStars();
+
+
+/* =================================================
+   EXTRA ANIMATIONS
+================================================= */
+
+const style=document.createElement("style");
+
+style.innerHTML=`
+
+@keyframes floatUp{
+
+    0%{
+        transform:translateY(0) scale(.5);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translateY(-110vh)
+        rotate(360deg)
+        scale(1.4);
+
+        opacity:0;
+    }
+}
+
+
+@keyframes confettiFall{
+
+    0%{
+        transform:
+        translateY(0)
+        rotate(0deg);
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translateY(110vh)
+        rotate(720deg);
+        opacity:0;
+    }
+}
+
+`;
+
+document.head.appendChild(style);
+
+
+/* =================================================
+   INITIAL PARTICLES
+================================================= */
+
+createParticles();
+
+
+/* =================================================
+   TAP ANYWHERE TO CONTINUE
+================================================= */
 
 document.body.addEventListener("click",(e)=>{
 
-if(e.target.tagName==="BUTTON")return;
-
-if(page<5){
-next();
-}
+    if(
+        e.target.tagName !== "BUTTON" &&
+        current < screens.length-1
+    ){
+        next();
+    }
 
 });
-
-
-/* ================= HEARTS ================= */
-
-function createHearts(amount){
-
-for(let i=0;i<amount;i++){
-
-let h=document.createElement("div");
-
-h.className="floatHeart";
-
-h.innerHTML=
-["❤️","💗","💕","💖","💘","✨"]
-[Math.floor(Math.random()*6)];
-
-h.style.left=Math.random()*100+"%";
-
-h.style.fontSize=
-(15+Math.random()*35)+"px";
-
-h.style.animationDuration=
-(3+Math.random()*4)+"s";
-
-document.body.appendChild(h);
-
-setTimeout(()=>{
-h.remove();
-},7500);
-
-}
-
-}
-
-
-/* ================= PETALS ================= */
-
-function createPetals(amount){
-
-for(let i=0;i<amount;i++){
-
-let p=document.createElement("div");
-
-p.className="petal";
-
-p.innerHTML=
-["🌸","🌹","🌷","💮"]
-[Math.floor(Math.random()*4)];
-
-p.style.left=Math.random()*100+"%";
-
-p.style.animationDuration=
-(4+Math.random()*5)+"s";
-
-p.style.fontSize=
-(15+Math.random()*20)+"px";
-
-document.getElementById("petals")
-.appendChild(p);
-
-setTimeout(()=>{
-p.remove();
-},9000);
-
-}
-
-}
-
-
-/* ================= YES ================= */
-
-function yes(){
-
-createConfetti(180);
-createHearts(40);
-createPetals(30);
-
-setTimeout(()=>{
-
-document.body.innerHTML=`
-
-<div style="
-width:100%;
-height:100%;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:20px;
-background:
-radial-gradient(circle at center,#720052,#21001f,#030006);
-">
-
-<div>
-
-<div style="
-font-size:95px;
-animation:beat 1s infinite;
-filter:drop-shadow(0 0 30px #ff1680);
-">
-❤️
-</div>
-
-<div class="final">
-ANU + GOWTHAM
-</div>
-
-<div class="line"></div>
-
-<div class="sub">
-
-<span class="pink">
-CHAPTER 06 — US ❤️
-</span>
-
-<br><br>
-
-"Maybe this is just the beginning...
-<br>
-but I hope...
-<br>
-this becomes our favourite story."
-
-<br><br>
-
-🌸 💕 ✨ 💖 ✨ 💕 🌸
-
-<br><br>
-
-<small>
-And yes...
-<br>
-I really like you, Anu.
-</small>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-},500);
-
-}
-
-
-/* ================= THINK ================= */
-
-function think(){
-
-document.body.innerHTML=`
-
-<div style="
-width:100%;
-height:100%;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:25px;
-background:
-radial-gradient(circle,#48002f,#130018,#030006);
-">
-
-<div>
-
-<div style="font-size:85px">
-🌸
-</div>
-
-<div class="bigTitle">
-TAKE YOUR TIME
-</div>
-
-<div class="sub">
-
-Anu...
-<br><br>
-
-No pressure.
-<br>
-
-No force.
-<br><br>
-
-<span class="pink">
-உன் answer எதுவாக இருந்தாலும்,
-<br>
-உன் happiness தான் important. ❤️
-</span>
-
-<br><br>
-
-— Gowtham
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* ================= CONFETTI ================= */
-
-function createConfetti(amount){
-
-for(let i=0;i<amount;i++){
-
-let c=document.createElement("div");
-
-c.style.position="fixed";
-c.style.top="-20px";
-c.style.left=Math.random()*100+"%";
-c.style.width="9px";
-c.style.height="18px";
-
-c.style.background=
-["#ff2d7a","#ffca28","#fff","#9c4dff","#00e5ff"]
-[Math.floor(Math.random()*5)];
-
-c.style.zIndex="100";
-
-c.style.animation=
-`fall ${2+Math.random()*4}s linear forwards`;
-
-document.body.appendChild(c);
-
-}
-
-}
 
 </script>
 
 </body>
 </html>
-```
